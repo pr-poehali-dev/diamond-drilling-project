@@ -10,6 +10,7 @@ export default function Index() {
   const [diameter, setDiameter] = useState(100);
   const [depth, setDepth] = useState(200);
   const [quantity, setQuantity] = useState(1);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const calculatePrice = () => {
     const basePrice = 500;
@@ -107,7 +108,7 @@ export default function Index() {
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Icon name="Drill" className="text-primary" size={32} />
-            <span className="text-2xl font-bold text-primary font-heading">АлмазБур</span>
+            <span className="text-xl md:text-2xl font-bold text-primary font-heading">АлмазБур</span>
           </div>
           <div className="hidden md:flex items-center gap-6">
             <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
@@ -117,50 +118,74 @@ export default function Index() {
             <a href="#calculator" className="hover:text-primary transition-colors">Калькулятор</a>
             <a href="#contacts" className="hover:text-primary transition-colors">Контакты</a>
           </div>
-          <Button className="hidden md:block">
+          <Button className="hidden md:flex">
             <Icon name="Phone" size={16} className="mr-2" />
             Позвонить
           </Button>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+          </Button>
         </nav>
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t">
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              <a href="#services" className="hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Услуги</a>
+              <a href="#portfolio" className="hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Портфолио</a>
+              <a href="#about" className="hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>О нас</a>
+              <a href="#equipment" className="hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Оборудование</a>
+              <a href="#calculator" className="hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Калькулятор</a>
+              <a href="#contacts" className="hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Контакты</a>
+              <Button className="w-full">
+                <Icon name="Phone" size={16} className="mr-2" />
+                Позвонить
+              </Button>
+            </div>
+          </div>
+        )}
       </header>
 
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 font-heading leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-heading leading-tight">
                 Алмазное бурение
                 <span className="text-primary"> отверстий</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
                 Профессиональное бурение в бетоне, кирпиче и железобетоне. Точность, скорость и чистота работ.
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <div className="flex items-center gap-2">
                   <Icon name="CheckCircle" className="text-primary" size={20} />
-                  <span>Опыт 15+ лет</span>
+                  <span className="text-sm md:text-base">Опыт 15+ лет</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="CheckCircle" className="text-primary" size={20} />
-                  <span>Гарантия качества</span>
+                  <span className="text-sm md:text-base">Гарантия качества</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="CheckCircle" className="text-primary" size={20} />
-                  <span>Работаем 24/7</span>
+                  <span className="text-sm md:text-base">Работаем 24/7</span>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <Button size="lg" className="text-lg">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="text-base md:text-lg w-full sm:w-auto">
                   <Icon name="Calculator" size={20} className="mr-2" />
                   Рассчитать стоимость
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg">
+                <Button size="lg" variant="outline" className="text-base md:text-lg w-full sm:w-auto">
                   <Icon name="MessageCircle" size={20} className="mr-2" />
                   Консультация
                 </Button>
               </div>
             </div>
-            <div className="relative animate-fade-in-up">
+            <div className="relative animate-fade-in-up hidden md:block">
               <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl flex items-center justify-center">
                 <Icon name="Drill" className="text-primary opacity-20" size={300} />
               </div>
@@ -171,9 +196,9 @@ export default function Index() {
 
       <section id="services" className="py-20 px-4 bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Наши услуги</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">Наши услуги</h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Выполняем все виды алмазного бурения с применением современного оборудования
             </p>
           </div>
@@ -209,13 +234,13 @@ export default function Index() {
 
       <section id="portfolio" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Наши проекты</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">Наши проекты</h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Более 500 успешно завершённых объектов по всей России
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {portfolio.map((project, index) => (
               <Card 
                 key={index} 
@@ -234,8 +259,8 @@ export default function Index() {
                   </div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-2xl font-heading">{project.title}</CardTitle>
-                  <CardDescription className="text-base">{project.description}</CardDescription>
+                  <CardTitle className="text-xl md:text-2xl font-heading">{project.title}</CardTitle>
+                  <CardDescription className="text-sm md:text-base">{project.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -253,25 +278,25 @@ export default function Index() {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">О компании</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-heading">О компании</h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Мы специализируемся на алмазном бурении отверстий более 15 лет. За это время выполнили более 500 проектов различной сложности — от частных домов до крупных торговых центров.
               </p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Наша команда состоит из квалифицированных специалистов с большим опытом работы. Мы используем только современное оборудование ведущих мировых производителей.
               </p>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 gap-4 md:gap-6">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">15+</div>
-                  <div className="text-sm text-muted-foreground">лет опыта</div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">15+</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">лет опыта</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">500+</div>
-                  <div className="text-sm text-muted-foreground">проектов</div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">500+</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">проектов</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">100%</div>
-                  <div className="text-sm text-muted-foreground">гарантия</div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">100%</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">гарантия</div>
                 </div>
               </div>
             </div>
@@ -303,13 +328,13 @@ export default function Index() {
 
       <section id="equipment" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Наше оборудование</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">Наше оборудование</h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Используем только профессиональное оборудование от ведущих мировых производителей
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {equipment.map((item, index) => (
               <Card key={index} className="hover:shadow-xl transition-all duration-300">
                 <CardHeader>
@@ -339,16 +364,16 @@ export default function Index() {
 
       <section id="calculator" className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Калькулятор стоимости</h2>
-            <p className="text-xl text-muted-foreground">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">Калькулятор стоимости</h2>
+            <p className="text-lg md:text-xl text-muted-foreground px-4">
               Рассчитайте примерную стоимость работ онлайн
             </p>
           </div>
           <Card className="shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-2xl">Параметры бурения</CardTitle>
-              <CardDescription>Укажите требуемые параметры для расчёта стоимости</CardDescription>
+              <CardTitle className="text-xl md:text-2xl">Параметры бурения</CardTitle>
+              <CardDescription className="text-sm md:text-base">Укажите требуемые параметры для расчёта стоимости</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
@@ -388,16 +413,16 @@ export default function Index() {
                   className="text-lg"
                 />
               </div>
-              <div className="bg-primary/10 rounded-xl p-6 mt-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-xl font-semibold">Примерная стоимость:</span>
-                  <span className="text-3xl font-bold text-primary">{calculatePrice().toLocaleString()} ₽</span>
+              <div className="bg-primary/10 rounded-xl p-4 md:p-6 mt-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                  <span className="text-lg md:text-xl font-semibold">Примерная стоимость:</span>
+                  <span className="text-2xl md:text-3xl font-bold text-primary">{calculatePrice().toLocaleString()} ₽</span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">
                   * Окончательная цена определяется после осмотра объекта
                 </p>
               </div>
-              <Button size="lg" className="w-full text-lg">
+              <Button size="lg" className="w-full text-base md:text-lg">
                 <Icon name="Send" size={20} className="mr-2" />
                 Отправить заявку
               </Button>
@@ -408,17 +433,17 @@ export default function Index() {
 
       <section id="contacts" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Контакты</h2>
-            <p className="text-xl text-muted-foreground">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-heading">Контакты</h2>
+            <p className="text-lg md:text-xl text-muted-foreground px-4">
               Свяжитесь с нами любым удобным способом
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <Card className="shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl">Свяжитесь с нами</CardTitle>
-                <CardDescription>Заполните форму и мы перезвоним в течение 15 минут</CardDescription>
+                <CardTitle className="text-xl md:text-2xl">Свяжитесь с нами</CardTitle>
+                <CardDescription className="text-sm md:text-base">Заполните форму и мы перезвоним в течение 15 минут</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
@@ -433,7 +458,7 @@ export default function Index() {
                   <Label htmlFor="message">Сообщение</Label>
                   <Textarea id="message" placeholder="Опишите ваш проект..." rows={4} />
                 </div>
-                <Button size="lg" className="w-full text-lg">
+                <Button size="lg" className="w-full text-base md:text-lg">
                   <Icon name="Send" size={20} className="mr-2" />
                   Отправить заявку
                 </Button>
@@ -489,7 +514,7 @@ export default function Index() {
 
       <footer className="bg-gray-900 text-white py-12 px-4">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Icon name="Drill" size={28} />
