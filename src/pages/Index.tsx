@@ -186,7 +186,7 @@ export default function Index() {
               </div>
             </div>
             <div className="relative animate-fade-in-up hidden md:block">
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl flex items-center justify-center">
+              <div className="aspect-square from-primary/20 to-secondary/20 rounded-3xl flex items-center justify-center bg-slate-200">
                 <Icon name="Drill" className="text-primary opacity-20" size={300} />
               </div>
             </div>
@@ -250,7 +250,7 @@ export default function Index() {
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 mx-0"
                   />
                   <div className="absolute top-4 right-4">
                     <span className="bg-white/95 px-3 py-1 rounded-full text-sm font-medium">
